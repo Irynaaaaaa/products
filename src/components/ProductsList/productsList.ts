@@ -7,7 +7,7 @@ const products: Product[] = [
     description:
       'Comfortable wireless headphones with noise-cancelling feature and up to 20 hours of battery life.',
     price: 89.99,
-    creationDate: new Date('2023-04-15'),
+    creationDate: new Date('2024-04-15'),
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const products: Product[] = [
     name: 'Gaming Mouse',
     description: '',
     price: 59.95,
-    creationDate: new Date('2023-08-11'),
+    creationDate: new Date('2022-08-11'),
   },
   {
     id: 6,

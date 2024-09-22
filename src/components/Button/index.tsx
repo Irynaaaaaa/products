@@ -10,7 +10,6 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
   color?: ButtonColor;
   size?: ButtonSize;
-  //   icon?: React.ReactNode;
 };
 
 const Button = ({
@@ -18,7 +17,6 @@ const Button = ({
   size = 'medium',
   title,
   onClick,
-  //   icon,
   className,
   ...props
 }: ButtonProps) => {
@@ -36,13 +34,6 @@ const Button = ({
       {...props}
     >
       {title}
-      {/* {icon ? (
-        <span className={styles.withIcon}>
-          {icon} <span className={styles.title}>{title}</span>
-        </span>
-      ) : (
-        <span className={styles.title}>{title}</span>
-      )} */}
     </button>
   );
 };

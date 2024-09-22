@@ -3,7 +3,15 @@
     display: flex;
     align-items: center;
     gap: 20px;
+
+    @media screen and (max-width: 768px){
+        width: 100%;
+        flex-wrap: wrap;
+    }
 }
 .select{
     width: 20%;
+    @media screen and (max-width: 768px){
+        width: auto;
+    }
 }

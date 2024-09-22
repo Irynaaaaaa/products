@@ -13,7 +13,7 @@ const ProductPreview = () => {
   const { selectedProduct, isNewProduct } = useAppSelector(
     (state) => state.products
   );
-  const { name = '', price = '' } = selectedProduct || {};
+  const { name = '', price = '', description = '' } = selectedProduct || {};
 
   const [newName, setNewName] = useState('');
   const [newPrice, setNewPrice] = useState('');
@@ -22,7 +22,9 @@ const ProductPreview = () => {
   const saveButtonDisabled =
     !newName ||
     !Number(newPrice) ||
-    (newName === name && Number(newPrice) === price);
+    (newName === name &&
+      Number(newPrice) === price &&
+      newDescription === description);
 
   const onSave = () => {
     if (!selectedProduct) return;
@@ -60,6 +62,9 @@ const ProductPreview = () => {
         placeholder="Product name"
         onChange={(e) => setNewName(e.target.value)}
         maxLength={30}
+        validationMessage={
+          newName.length === 30 ? 'only 30 symbols allowed' : ''
+        }
       />
       <TextArea
         name="description"
@@ -69,6 +74,9 @@ const ProductPreview = () => {
         onChange={(e) => setNewDescription(e.target.value)}
         rows={4}
         maxLength={200}
+        validationMessage={
+          newDescription.length === 200 ? 'only 200 symbols allowed' : ''
+        }
       />
       <Input
         name="price"

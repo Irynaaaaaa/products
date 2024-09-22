@@ -1,4 +1,4 @@
-@import "../../variables.scss";
+@import "../../styles/variables";
 
 .wrapper{
   display: inline-flex;
@@ -31,4 +31,10 @@
     font-size: 14px;
     line-height: 16px;
     color: black;
+}
+
+.validation_message{
+    color: $main-red;
+    font-size: 12px;
+    margin-top: 3px;
 }

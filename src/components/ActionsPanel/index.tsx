@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { Product, SortOptions } from '../../types';
 import {
   changePage,
-  filterProducts,
+  searchProducts,
   selectProduct,
   sortProducts,
 } from '../../redux/slices/products';
@@ -48,7 +48,7 @@ const ActionsPanel = () => {
   };
 
   useEffect(() => {
-    dispatch(filterProducts(debouncedSearch));
+    dispatch(searchProducts(debouncedSearch));
     if (page !== 1) {
       dispatch(changePage(1));
     }

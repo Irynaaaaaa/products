@@ -39,8 +39,24 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### FUNCTIONALITY DESCRIPTION
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- INITIALIZATION
+  if localStorage has such key as 'products' - we get products from localStorage, otherwise - we set default products list
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ACTIONS THAT ARE SAVED TO LOCALSTORAGE
+
+1. add product
+2. edit product
+3. delete product
+
+- ACTIONS THAT ARE NOT SAVED TO LOCALSTORAGE
+
+1. search
+2. sort
+
+- PRODUCTS LISTS
+  1.initialProducts - we need it when user has sorted an array and wants to search.
+  As we don't save sorting to localStorage - we can't use it for search in sorted list
+  2.products - we map this array to render products. It may be sorted, filtered(searched), paginated.
+  3.localStorage products - the main source of truth (not sorted, not filtered array)

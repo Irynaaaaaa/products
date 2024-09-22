@@ -5,9 +5,16 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label?: string;
   className?: string;
+  validationMessage?: string;
 };
 
-const Input = ({ name, label, className = '', ...otherProps }: InputProps) => {
+const Input = ({
+  name,
+  label,
+  className = '',
+  validationMessage,
+  ...otherProps
+}: InputProps) => {
   return (
     <div className={`${styles.wrapper} ${className}`}>
       {label && (
@@ -16,6 +23,9 @@ const Input = ({ name, label, className = '', ...otherProps }: InputProps) => {
         </label>
       )}
       <input className={styles.input} {...otherProps} id={name} name={name} />
+      {validationMessage && (
+        <span className={styles.validation_message}>{validationMessage}</span>
+      )}
     </div>
   );
 };

@@ -5,12 +5,14 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   name: string;
   label: string;
   className?: string;
+  validationMessage?: string;
 };
 
 const TextArea = ({
   name,
   label,
   className = '',
+  validationMessage,
   ...otherProps
 }: TextAreaProps) => {
   return (
@@ -26,6 +28,9 @@ const TextArea = ({
         id={name}
         name={name}
       />
+      {validationMessage && (
+        <span className={styles.validation_message}>{validationMessage}</span>
+      )}
     </div>
   );
 };
