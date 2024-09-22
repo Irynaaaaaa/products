@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Input from '../Input';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { addProduct, updateProduct } from '../../redux/slices/products';
@@ -26,7 +27,7 @@ const ProductPreview = () => {
     !Number(newPrice) ||
     Number(newPrice) < 0 ||
     (newName === name &&
-      Number(newPrice) === price &&
+      Number(newPrice) === Number(price) &&
       newDescription === description);
 
   const onSave = () => {
@@ -39,9 +40,25 @@ const ProductPreview = () => {
     };
 
     if (isNewProduct) {
-      return dispatch(addProduct(newProduct));
+      dispatch(addProduct(newProduct));
+    } else {
+      dispatch(updateProduct(newProduct));
     }
-    dispatch(updateProduct(newProduct));
+
+    toast.success(
+      isNewProduct
+        ? 'Product added successfully'
+        : 'Product updated successfully',
+      {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      }
+    );
   };
 
   useEffect(() => {

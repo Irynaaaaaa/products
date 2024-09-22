@@ -15,6 +15,9 @@ const ProductsList = () => {
   const dispatch = useAppDispatch();
   const page = useAppSelector((state) => state.products.page);
   const products = useAppSelector((state) => state.products.products);
+  const selectedProduct = useAppSelector(
+    (state) => state.products.selectedProduct
+  );
 
   const startIndex = (page - 1) * productsPerPage;
   const paginatedProducts = products.slice(
@@ -69,6 +72,7 @@ const ProductsList = () => {
         <Product
           key={product.id}
           product={product}
+          isSelected={selectedProduct?.id === product.id}
           onDeleteProduct={onDeleteProduct}
           onSelectProduct={onSelectProduct}
         />

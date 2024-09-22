@@ -1,29 +1,27 @@
 import React from 'react';
 import { Product as ProductType } from '../../types';
-import { useAppSelector } from '../../redux/hooks';
 import { ProductIcon } from '../../assets/icons';
 import Button from '../Button';
 import styles from './styles.module.scss';
 
 type ProductProps = {
   product: ProductType;
+  isSelected: boolean;
   onDeleteProduct: (id: number) => void;
   onSelectProduct: (product: ProductType) => void;
 };
 
 const Product = ({
   product,
+  isSelected,
   onDeleteProduct,
   onSelectProduct,
 }: ProductProps) => {
   const { id, name, description } = product;
-  const selectedProduct = useAppSelector(
-    (state) => state.products.selectedProduct
-  );
 
   return (
     <li
-      className={`${styles.product} ${selectedProduct?.id === id ? styles.product_active : ''}`}
+      className={`${styles.product} ${isSelected ? styles.product_active : ''}`}
       onClick={() => onSelectProduct(product)}
     >
       <div className={styles.product_icon_wrapper}>

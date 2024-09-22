@@ -69,6 +69,7 @@ export const updateProductHandler = (
   state: ProductsState,
   action: PayloadAction<Product>
 ) => {
+  state.selectedProduct = action.payload;
   state.products = state.products.map((product) =>
     product.id === action.payload.id ? action.payload : product
   );
