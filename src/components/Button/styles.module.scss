@@ -1,0 +1,72 @@
+@import "../../variables.scss";
+.base_button {
+    color: white;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+
+    &:disabled {
+        background-color: $main-gray;
+        cursor: default;
+
+        &:hover {
+            background-color: $main-gray;
+        }
+    }
+}
+
+.delete {
+    background-color: $main-red;
+
+    &:hover {
+        background-color: $secondary-red;
+    }
+
+    &:active {
+        background-color: $main-red;
+    }
+}
+
+.base {
+    background-color: $main-blue;
+
+    &:hover {
+        background-color: $secondary-blue;
+    }
+
+    &:active {
+        background-color: $main-blue;
+    }
+}
+
+.small {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 8px;
+    width: fit-content;
+}
+
+.medium {
+    font-size: 16px;
+    line-height: 18px;
+    padding: 12px;
+    width: fit-content;
+}
+
+.large {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 16px;
+    width: fit-content;
+}
+
+.withIcon{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
