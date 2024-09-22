@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../../types';
+import { Product } from '../../../types';
+import { ProductsState } from './utils';
 import {
   addProductHandler,
-  searchProductsHandler,
-  ProductsState,
   removeProductHandler,
+  searchProductsHandler,
   sortProductsHandler,
   updateProductHandler,
-} from './utils';
+} from './productsHandlers';
 
 const initialState: ProductsState = {
-  initialProducts: [],
   products: [],
   selectedProduct: null,
   isNewProduct: false,
   page: 1,
   sortBy: null,
+  searchValue: '',
 };
 
 export const productsSlice = createSlice({
@@ -24,14 +24,16 @@ export const productsSlice = createSlice({
   reducers: {
     initProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
-      state.initialProducts = action.payload;
     },
     addProduct: addProductHandler,
     removeProduct: removeProductHandler,
     updateProduct: updateProductHandler,
     selectProduct: (
       state,
-      action: PayloadAction<{ product: Product; isNew?: boolean }>
+      action: PayloadAction<{
+        product: ProductsState['selectedProduct'];
+        isNew?: boolean;
+      }>
     ) => {
       state.selectedProduct = action.payload.product;
       state.isNewProduct = !!action.payload.isNew;

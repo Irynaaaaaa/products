@@ -6,4 +6,4 @@ export type Product = {
   creationDate: Date;
 };
 
-export type SortOptions = 'name' | 'creationDate' | '';
+export type SortOptions = 'name' | 'creationDate';

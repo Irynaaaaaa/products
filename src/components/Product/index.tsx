@@ -17,7 +17,9 @@ const Product = ({
   onSelectProduct,
 }: ProductProps) => {
   const { id, name, description } = product;
-  const { selectedProduct } = useAppSelector((state) => state.products);
+  const selectedProduct = useAppSelector(
+    (state) => state.products.selectedProduct
+  );
 
   return (
     <li

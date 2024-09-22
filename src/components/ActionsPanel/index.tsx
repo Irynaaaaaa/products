@@ -20,7 +20,6 @@ export type SelectOption = {
 };
 
 const options: SelectOption[] = [
-  { value: '', label: 'Initial' },
   { value: 'name', label: 'Name' },
   { value: 'creationDate', label: 'Date' },
 ];
@@ -28,7 +27,12 @@ const options: SelectOption[] = [
 const ActionsPanel = () => {
   const [search, setSearch] = useState('');
 
-  const { page, sortBy } = useAppSelector((state) => state.products);
+  const page = useAppSelector((state) => state.products.page);
+  const sortBy = useAppSelector((state) => state.products.sortBy);
+  const selectedProduct = useAppSelector(
+    (state) => state.products.selectedProduct
+  );
+
   const dispatch = useAppDispatch();
   const debouncedSearch = useDebounce(search, 500);
 
@@ -44,11 +48,18 @@ const ActionsPanel = () => {
   };
 
   const onSortChange = (option: SingleValue<SelectOption>) => {
-    dispatch(sortProducts(option?.value || ''));
+    if (!option) return;
+    dispatch(sortProducts(option.value));
   };
 
   useEffect(() => {
     dispatch(searchProducts(debouncedSearch));
+
+    if (debouncedSearch && selectedProduct) {
+      dispatch(selectProduct({ product: null }));
+      window.history.pushState(null, '', '/products');
+    }
+
     if (page !== 1) {
       dispatch(changePage(1));
     }

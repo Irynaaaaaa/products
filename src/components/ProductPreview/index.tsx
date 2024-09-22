@@ -9,19 +9,22 @@ import Placeholder from './Placeholder';
 import styles from './styles.module.scss';
 
 const ProductPreview = () => {
-  const dispatch = useAppDispatch();
-  const { selectedProduct, isNewProduct } = useAppSelector(
-    (state) => state.products
-  );
-  const { name = '', price = '', description = '' } = selectedProduct || {};
-
   const [newName, setNewName] = useState('');
   const [newPrice, setNewPrice] = useState('');
   const [newDescription, setNewDescription] = useState('');
 
+  const dispatch = useAppDispatch();
+  const isNewProduct = useAppSelector((state) => state.products.isNewProduct);
+  const selectedProduct = useAppSelector(
+    (state) => state.products.selectedProduct
+  );
+
+  const { name = '', price = '', description = '' } = selectedProduct || {};
+
   const saveButtonDisabled =
     !newName ||
     !Number(newPrice) ||
+    Number(newPrice) < 0 ||
     (newName === name &&
       Number(newPrice) === price &&
       newDescription === description);
@@ -87,6 +90,11 @@ const ProductPreview = () => {
         onChange={(e) => setNewPrice(e.target.value)}
         className={styles.price}
         min={0}
+        validationMessage={
+          Number(newPrice) < 0 || isNaN(Number(newPrice))
+            ? 'Price should be a number greater than 0'
+            : ''
+        }
       />
       <Button
         title="Save"

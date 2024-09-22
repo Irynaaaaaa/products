@@ -12,8 +12,9 @@ import defaultProducts from './productsList';
 import styles from './styles.module.scss';
 
 const ProductsList = () => {
-  const { products, page } = useAppSelector((state) => state.products);
   const dispatch = useAppDispatch();
+  const page = useAppSelector((state) => state.products.page);
+  const products = useAppSelector((state) => state.products.products);
 
   const startIndex = (page - 1) * productsPerPage;
   const paginatedProducts = products.slice(
@@ -57,7 +58,7 @@ const ProductsList = () => {
   if (!products.length) {
     return (
       <div className={styles.products}>
-        <p className={styles.no_products}>No products found</p>;
+        <p className={styles.no_products}>No products found</p>
       </div>
     );
   }

@@ -6,7 +6,8 @@ import { productsPerPage } from '../../constants';
 import styles from './styles.module.scss';
 
 const Pagination = () => {
-  const { page, products } = useAppSelector((state) => state.products);
+  const page = useAppSelector((state) => state.products.page);
+  const products = useAppSelector((state) => state.products.products);
   const dispatch = useAppDispatch();
   const totalPages = Math.ceil(products.length / productsPerPage);
 

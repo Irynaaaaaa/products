@@ -56,7 +56,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 2. sort
 
 - PRODUCTS LISTS
-  1.initialProducts - we need it when user has sorted an array and wants to search.
-  As we don't save sorting to localStorage - we can't use it for search in sorted list
-  2.products - we map this array to render products. It may be sorted, filtered(searched), paginated.
-  3.localStorage products - the main source of truth (not sorted, not filtered array)
+  1.products - we map this array to render products. It may be sorted, filtered(searched), paginated.
+  2.localStorage products - the main source of truth (not sorted, not filtered array)
