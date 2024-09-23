@@ -20,14 +20,14 @@ const ProductPreview = () => {
     (state) => state.products.selectedProduct
   );
 
-  const { name = '', price = '', description = '' } = selectedProduct || {};
+  const { name = '', price = 0, description = '' } = selectedProduct || {};
 
   const saveButtonDisabled =
     !newName ||
-    !Number(newPrice) ||
-    Number(newPrice) < 0 ||
+    newPrice.startsWith('0') ||
+    Number(newPrice) <= 0 ||
     (newName === name &&
-      Number(newPrice) === Number(price) &&
+      Number(newPrice) === price &&
       newDescription === description);
 
   const onSave = () => {
@@ -83,8 +83,11 @@ const ProductPreview = () => {
         onChange={(e) => setNewName(e.target.value)}
         maxLength={30}
         validationMessage={
-          newName.length === 30 ? 'only 30 symbols allowed' : ''
+          !newName.length || newName.length === 30
+            ? 'name is required, only 30 symbols allowed'
+            : ''
         }
+        data-testid="product-name"
       />
       <TextArea
         name="description"
@@ -108,7 +111,7 @@ const ProductPreview = () => {
         className={styles.price}
         min={0}
         validationMessage={
-          Number(newPrice) < 0 || isNaN(Number(newPrice))
+          Number(newPrice) <= 0 || isNaN(Number(newPrice))
             ? 'Price should be a number greater than 0'
             : ''
         }
