@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductsApp from './components/ProductsApp';
+import ProductsApp from './pages/ProductsApp';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import Header from '../Header';
-import ProductsList from '../ProductsList';
-import ProductPreview from '../ProductPreview';
-import ActionsPanel from '../ActionsPanel';
-import Pagination from '../Pagination';
+import Header from '../../components/Header';
+import ProductsList from '../../components/ProductsList';
+import ProductPreview from '../../components/ProductPreview';
+import ActionsPanel from '../../components/ActionsPanel';
+import Pagination from '../../components/Pagination';
 import styles from './styles.module.scss';
 
 const ProductsApp = () => {
