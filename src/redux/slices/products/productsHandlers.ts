@@ -29,8 +29,6 @@ export const addProductHandler = (
     'products',
     JSON.stringify([...getStoredProducts(), action.payload])
   );
-
-  window.history.pushState(null, '', '/products');
 };
 
 export const removeProductHandler = (
@@ -58,7 +56,7 @@ export const removeProductHandler = (
   );
   localStorage.setItem('products', JSON.stringify(storedProductsFiltered));
 
-  if (state.selectedProduct) {
+  if (state.selectedProduct && !state.isNewProduct) {
     window.history.pushState(null, '', `/products/${state.selectedProduct.id}`);
   } else {
     window.history.pushState(null, '', '/products');

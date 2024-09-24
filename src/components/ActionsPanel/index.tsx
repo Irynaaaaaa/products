@@ -45,6 +45,7 @@ const ActionsPanel = () => {
       creationDate: new Date(),
     };
     dispatch(selectProduct({ product: emptyProduct, isNew: true }));
+    window.history.pushState(null, '', '/products');
   };
 
   const onSortChange = (option: SingleValue<SelectOption>) => {

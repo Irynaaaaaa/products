@@ -30,7 +30,8 @@ const ProductPreview = () => {
       Number(newPrice) === price &&
       newDescription === description);
 
-  const onSave = () => {
+  const onSave = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!selectedProduct) return;
     const newProduct = {
       ...selectedProduct,
@@ -71,7 +72,7 @@ const ProductPreview = () => {
   if (!selectedProduct) return <Placeholder title="Add/Select a product" />;
 
   return (
-    <div className={styles.preview}>
+    <form className={styles.preview} onSubmit={onSave}>
       <div className={styles.preview_icon_wrapper}>
         <ProductIcon fill="white" />
       </div>
@@ -110,19 +111,20 @@ const ProductPreview = () => {
         onChange={(e) => setNewPrice(e.target.value)}
         className={styles.price}
         min={0}
+        step="any"
         validationMessage={
-          Number(newPrice) <= 0 || isNaN(Number(newPrice))
+          Number(newPrice) <= 0 || newPrice.startsWith('0')
             ? 'Price should be a number greater than 0'
             : ''
         }
       />
       <Button
         title="Save"
-        onClick={onSave}
+        type="submit"
         disabled={saveButtonDisabled}
         size="small"
       />
-    </div>
+    </form>
   );
 };
 

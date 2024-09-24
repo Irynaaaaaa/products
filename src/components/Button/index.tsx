@@ -6,7 +6,7 @@ type ButtonSize = 'small' | 'medium' | 'large';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   color?: ButtonColor;
   size?: ButtonSize;
@@ -24,7 +24,9 @@ const Button = ({
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.stopPropagation();
-    onClick();
+    if (onClick) {
+      onClick();
+    }
   };
 
   return (
