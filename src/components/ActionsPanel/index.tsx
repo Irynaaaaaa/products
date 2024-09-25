@@ -56,7 +56,7 @@ const ActionsPanel = () => {
   useEffect(() => {
     dispatch(searchProducts(debouncedSearch));
 
-    if (debouncedSearch && selectedProduct) {
+    if (selectedProduct) {
       dispatch(selectProduct({ product: null }));
       window.history.pushState(null, '', '/products');
     }
