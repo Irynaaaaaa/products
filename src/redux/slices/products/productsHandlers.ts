@@ -25,6 +25,7 @@ export const addProductHandler = (
   state.isNewProduct = false;
   state.selectedProduct = null;
 
+  // refactor and move this to event handler
   localStorage.setItem(
     'products',
     JSON.stringify([...getStoredProducts(), action.payload])
@@ -51,6 +52,7 @@ export const removeProductHandler = (
     (product) => product.id !== action.payload
   );
 
+  // refactor and move this to event handler
   const storedProductsFiltered = getStoredProducts().filter(
     (product) => product.id !== action.payload
   );
@@ -84,6 +86,7 @@ export const updateProductHandler = (
     );
   }
 
+  // refactor and move this to event handler
   localStorage.setItem(
     'products',
     JSON.stringify(
